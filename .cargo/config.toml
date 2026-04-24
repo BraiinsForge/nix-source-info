@@ -1,0 +1,8 @@
+[registries.braiins]
+index = "sparse+http://registry.ii.zone/api/v1/crates/"
+
+[source.braiins-cratesio]
+registry = "sparse+http://registry.ii.zone/api/v1/cratesio/"
+
+[source.crates-io]
+replace-with = "braiins-cratesio"

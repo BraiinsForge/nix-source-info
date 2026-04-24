@@ -2,6 +2,7 @@
 name = "nix-source-info"
 version = "0.1.0"
 edition = "2024"
+publish = ["braiins"]
 
 [dependencies]
 ver-stub = "0.3"
