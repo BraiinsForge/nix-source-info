@@ -27,7 +27,7 @@ struct RawSourceInfo {
 /// Provides information about the source that was used for the build.
 #[derive(Debug)]
 pub struct SourceInfo {
-    /// Last modification of the flake's source (git commit timestamp).
+    /// Last modification of the flake's source (latest timestamp from git, not necessarily from the latest commit!).
     pub last_modified: DateTime<Utc>,
     /// The SHA-256 (in SRI format) of the NAR serialization of the flake's source tree.
     pub nar_hash: String,
@@ -85,7 +85,7 @@ impl SourceInfo {
         &self.rev[..8]
     }
 
-    /// RFC3339-formatted commit timestamp.
+    /// RFC3339-formatted timestamp.
     pub fn timestamp(&self) -> String {
         self.last_modified
             .to_rfc3339_opts(SecondsFormat::Secs, true)
