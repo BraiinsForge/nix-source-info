@@ -3,7 +3,8 @@
     lib.patchSourceInfo = pkgs: sourceInfo: drv: pkgs.runCommand "patch-source-info"
       {
         name = "${drv.name}-with-version";
-        meta.mainProgram = drv.meta.mainProgram or drv.pname;
+        passthru = drv.passthru or { };
+        meta = (drv.meta or { }) // { mainProgram = drv.meta.mainProgram or drv.pname; };
         buildInputs = [ (pkgs.callPackage ./ver-stub-tool.nix { }) ];
         # we need to rename `outPath` otherwise `toJSON` just returns it instead of the jsonified attrset
         env.PAYLOAD = builtins.toJSON ((removeAttrs sourceInfo [ "outPath" ]) // { storePath = sourceInfo.outPath; });
